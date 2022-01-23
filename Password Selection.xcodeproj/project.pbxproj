@@ -13,6 +13,7 @@
 		1D40B0C6279D3B96009AD7C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D40B0C4279D3B96009AD7C0 /* Main.storyboard */; };
 		1D40B0C8279D3B9B009AD7C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D40B0C7279D3B9B009AD7C0 /* Assets.xcassets */; };
 		1D40B0CB279D3B9B009AD7C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D40B0C9279D3B9B009AD7C0 /* LaunchScreen.storyboard */; };
+		1D40B0D4279D6272009AD7C0 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D40B0D3279D6272009AD7C0 /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		1D40B0C7279D3B9B009AD7C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D40B0CA279D3B9B009AD7C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D40B0CC279D3B9B009AD7C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D40B0D3279D6272009AD7C0 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		1D40B0BD279D3B96009AD7C0 /* Password Selection */ = {
 			isa = PBXGroup;
 			children = (
+				1D40B0D2279D6227009AD7C0 /* Extension */,
 				1D40B0BE279D3B96009AD7C0 /* AppDelegate.swift */,
 				1D40B0C0279D3B96009AD7C0 /* SceneDelegate.swift */,
 				1D40B0C2279D3B96009AD7C0 /* ViewController.swift */,
@@ -65,6 +68,14 @@
 				1D40B0CC279D3B9B009AD7C0 /* Info.plist */,
 			);
 			path = "Password Selection";
+			sourceTree = "<group>";
+		};
+		1D40B0D2279D6227009AD7C0 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1D40B0D3279D6272009AD7C0 /* String.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +151,7 @@
 			files = (
 				1D40B0C3279D3B96009AD7C0 /* ViewController.swift in Sources */,
 				1D40B0BF279D3B96009AD7C0 /* AppDelegate.swift in Sources */,
+				1D40B0D4279D6272009AD7C0 /* String.swift in Sources */,
 				1D40B0C1279D3B96009AD7C0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
