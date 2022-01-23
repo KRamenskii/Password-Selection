@@ -58,14 +58,9 @@
 		1D40B0BD279D3B96009AD7C0 /* Password Selection */ = {
 			isa = PBXGroup;
 			children = (
-				1D40B0D2279D6227009AD7C0 /* Extension */,
-				1D40B0BE279D3B96009AD7C0 /* AppDelegate.swift */,
-				1D40B0C0279D3B96009AD7C0 /* SceneDelegate.swift */,
-				1D40B0C2279D3B96009AD7C0 /* ViewController.swift */,
-				1D40B0C4279D3B96009AD7C0 /* Main.storyboard */,
+				1D40B0D6279DCFFE009AD7C0 /* Resources */,
 				1D40B0C7279D3B9B009AD7C0 /* Assets.xcassets */,
-				1D40B0C9279D3B9B009AD7C0 /* LaunchScreen.storyboard */,
-				1D40B0CC279D3B9B009AD7C0 /* Info.plist */,
+				1D40B0D5279DCFF6009AD7C0 /* Sources */,
 			);
 			path = "Password Selection";
 			sourceTree = "<group>";
@@ -76,6 +71,59 @@
 				1D40B0D3279D6272009AD7C0 /* String.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		1D40B0D5279DCFF6009AD7C0 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				1D40B0D8279DD02F009AD7C0 /* Scenes */,
+				1D40B0D7279DD028009AD7C0 /* App */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		1D40B0D6279DCFFE009AD7C0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1D40B0D2279D6227009AD7C0 /* Extension */,
+				1D40B0DA279DD066009AD7C0 /* Storyboards */,
+				1D40B0D9279DD05D009AD7C0 /* Configs */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1D40B0D7279DD028009AD7C0 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1D40B0BE279D3B96009AD7C0 /* AppDelegate.swift */,
+				1D40B0C0279D3B96009AD7C0 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		1D40B0D8279DD02F009AD7C0 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				1D40B0C2279D3B96009AD7C0 /* ViewController.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		1D40B0D9279DD05D009AD7C0 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				1D40B0CC279D3B9B009AD7C0 /* Info.plist */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
+		1D40B0DA279DD066009AD7C0 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				1D40B0C4279D3B96009AD7C0 /* Main.storyboard */,
+				1D40B0C9279D3B9B009AD7C0 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,7 +351,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V8V72KCX9X;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Password Selection/Info.plist";
+				INFOPLIST_FILE = "Password Selection/Resources/Configs/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -318,7 +366,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -331,7 +379,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V8V72KCX9X;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Password Selection/Info.plist";
+				INFOPLIST_FILE = "Password Selection/Resources/Configs/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -346,7 +394,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
