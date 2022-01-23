@@ -16,27 +16,99 @@ class ViewController: UIViewController {
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var appearanceLabel: UILabel!
+    @IBOutlet weak var lightButton: UIButton!
+    @IBOutlet weak var darkButton: UIButton!
+    
+    private var password = ""
+    private var symbolsAmount = 0
+    private var isDark = false
     
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupLayout()
     }
     
     // MARK: - Settings
     
     private func setupLayout() {
-        generatePasswordButton.layer.cornerRadius = Metric.cornerRadius
-        generatePasswordButton.layer.shadowOpacity = Metric.shadowOpacity
-        generatePasswordButton.layer.shadowColor = CGColor(red: Metric.indexColor, green: Metric.indexColor, blue: Metric.indexColor, alpha: Metric.alpha)
-        generatePasswordButton.layer.shadowOffset = CGSize(width: Metric.widthShadow, height: Metric.heightShadow)
+        createLayoutButtons([generatePasswordButton, guessThePasswordButton, resetButton, stopButton, lightButton, darkButton])
+        createAppearance(isDark)
+    }
+    
+    private func createLayoutButtons(_ buttons: [UIButton]) {
+        for index in 0..<buttons.count {
+            buttons[index].layer.cornerRadius = Metric.cornerRadius
+            buttons[index].layer.shadowOpacity = Metric.shadowOpacity
+            buttons[index].layer.shadowColor = CGColor(red: Metric.indexColor, green: Metric.indexColor, blue: Metric.indexColor, alpha: Metric.alpha)
+            buttons[index].layer.shadowOffset = CGSize(width: Metric.widthShadow, height: Metric.heightShadow)
+        }
+    }
+    
+    private func createAppearance(_ isDark: Bool) {
+        if isDark {
+            view.backgroundColor = .black
+            lightButton.backgroundColor = .white
+            darkButton.backgroundColor = .lightGray
+            appearanceLabel.textColor = .white
+            passwordLabel.textColor = .white
+        } else {
+            view.backgroundColor = .white
+            lightButton.backgroundColor = .lightGray
+            darkButton.backgroundColor = .white
+            appearanceLabel.textColor = .black
+            passwordLabel.textColor = .black
+        }
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func startSelection(_ sender: UIButton) {
+        let amount = textField.text ?? ""
+        symbolsAmount = Int(amount) ?? 0
+        guard symbolsAmount != 0 else { return }
+        createPassword(symbolsAmount)
+        textField.text = password
+        textField.isSecureTextEntry = true
+    }
+    
+    @IBAction func resetPassword(_ sender: UIButton) {
+        textField.text = ""
+        textField.isSecureTextEntry = false
+    }
+    
+    @IBAction func startGuessPassword(_ sender: UIButton) {
         
-        guessThePasswordButton.layer.cornerRadius = Metric.cornerRadius
-        guessThePasswordButton.layer.shadowOpacity = Metric.shadowOpacity
-        guessThePasswordButton.layer.shadowColor = CGColor(red: Metric.indexColor, green: Metric.indexColor, blue: Metric.indexColor, alpha: Metric.alpha)
-        guessThePasswordButton.layer.shadowOffset = CGSize(width: Metric.widthShadow, height: Metric.heightShadow)
+    }
+    
+    @IBAction func stopGuessPassword(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func onLight(_ sender: UIButton) {
+        isDark = false
+        createAppearance(isDark)
+    }
+    
+    @IBAction func onDark(_ sender: UIButton) {
+        isDark = true
+        createAppearance(isDark)
+    }
+    
+    func createPassword(_ amount: Int) {
+        let symbols = password.printable
+        var arrayString: [Character] = []
+        var index = 0
+        while index < amount {
+            let symbol = Array(symbols).randomElement()
+            arrayString.append(symbol ?? "0")
+            index += 1
+        }
+        password = String(arrayString)
     }
 }
 
