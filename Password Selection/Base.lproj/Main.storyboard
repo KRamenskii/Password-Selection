@@ -75,6 +75,13 @@
                             <constraint firstItem="WyU-1s-SV2" firstAttribute="top" secondItem="tHT-FZ-dqo" secondAttribute="bottom" constant="40" id="zie-BA-MKA"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="Mds-O8-YRB" id="l7J-EY-fKL"/>
+                        <outlet property="generatePasswordButton" destination="g8P-jh-sMy" id="Kec-kG-s0r"/>
+                        <outlet property="guessThePasswordButton" destination="tHT-FZ-dqo" id="k0g-j3-XTJ"/>
+                        <outlet property="passwordLabel" destination="WyU-1s-SV2" id="nBd-tt-JTJ"/>
+                        <outlet property="textField" destination="HOb-Gs-l21" id="nqM-NO-ETQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
