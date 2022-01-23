@@ -25,6 +25,8 @@ class ViewController: UIViewController {
     private var password = ""
     private var symbolsAmount = 0
     private var isDark = false
+    private var isHacking = false
+    private var isPasswordCracked = false
     
     // MARK: - Lifecycle
 
@@ -56,12 +58,14 @@ class ViewController: UIViewController {
             darkButton.backgroundColor = .lightGray
             appearanceLabel.textColor = .white
             passwordLabel.textColor = .white
+            activityIndicator.color = .white
         } else {
             view.backgroundColor = .white
             lightButton.backgroundColor = .lightGray
             darkButton.backgroundColor = .white
             appearanceLabel.textColor = .black
             passwordLabel.textColor = .black
+            activityIndicator.color = .black
         }
     }
     
@@ -74,6 +78,7 @@ class ViewController: UIViewController {
         createPassword(symbolsAmount)
         textField.text = password
         textField.isSecureTextEntry = true
+        isPasswordCracked = false
     }
     
     @IBAction func resetPassword(_ sender: UIButton) {
@@ -82,11 +87,31 @@ class ViewController: UIViewController {
     }
     
     @IBAction func startGuessPassword(_ sender: UIButton) {
-        
+        isHacking = true
+        if isHacking {
+            let concurrentQueue = DispatchQueue(label: "myConcurrentQueue",
+                                                qos: .default, attributes: .concurrent,
+                                                autoreleaseFrequency: .inherit,
+                                                target: nil)
+            concurrentQueue.async {
+                self.bruteForce(passwordToUnlock: self.password)
+                self.isHacking = false
+            }
+        }
     }
     
     @IBAction func stopGuessPassword(_ sender: UIButton) {
-        
+        if self.isHacking {
+            isHacking = false
+            isPasswordCracked = false
+            passwordLabel.text = "Подбор пароля прерван!"
+            activityIndicator.startAnimating()
+            activityIndicator.isHidden = true
+            password = ""
+        } else if isPasswordCracked {
+            password = ""
+            passwordLabel.text = "Придумайте новый пароль!"
+        }
     }
     
     @IBAction func onLight(_ sender: UIButton) {
@@ -99,7 +124,7 @@ class ViewController: UIViewController {
         createAppearance(isDark)
     }
     
-    func createPassword(_ amount: Int) {
+    private func createPassword(_ amount: Int) {
         let symbols = password.printable
         var arrayString: [Character] = []
         var index = 0
@@ -109,6 +134,37 @@ class ViewController: UIViewController {
             index += 1
         }
         password = String(arrayString)
+    }
+    
+    private func bruteForce(passwordToUnlock: String) {
+        let ALLOWED_CHARACTERS:   [String] = String().printable.map { String($0) }
+
+        var password: String = ""
+
+        while password != passwordToUnlock && isHacking {
+            password = generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)
+            
+            print(password)
+            // Your stuff here
+            DispatchQueue.main.async {
+                self.checkPasswordCrackingStatus(password)
+            }
+        }
+        print(password)
+    }
+    
+    private func checkPasswordCrackingStatus(_ currentPassword: String) {
+        if self.password == currentPassword {
+            isPasswordCracked = true
+            self.passwordLabel.text = "Пароль: \(currentPassword) взломан!"
+            activityIndicator.stopAnimating()
+            activityIndicator.isHidden = true
+            textField.isSecureTextEntry = false
+        } else if isHacking && !isPasswordCracked {
+            self.passwordLabel.text = "Пароль подбирается... \(currentPassword)"
+            activityIndicator.startAnimating()
+            activityIndicator.isHidden = false
+        }
     }
 }
 
@@ -123,4 +179,33 @@ extension ViewController {
         static let alpha: CGFloat = 1
         static let indexColor: CGFloat = 33 / 100
     }
+}
+
+// MARK: - Setting BruteForce
+
+func indexOf(character: Character, _ array: [String]) -> Int {
+    return array.firstIndex(of: String(character))!
+}
+
+func characterAt(index: Int, _ array: [String]) -> Character {
+    return index < array.count ? Character(array[index])
+    : Character("")
+}
+
+func generateBruteForce(_ string: String, fromArray array: [String]) -> String {
+    var str: String = string
+    
+    if str.count <= 0 {
+        str.append(characterAt(index: 0, array))
+    }
+    else {
+        str.replace(at: str.count - 1,
+                    with: characterAt(index: (indexOf(character: str.last!, array) + 1) % array.count, array))
+        
+        if indexOf(character: str.last!, array) == 0 {
+            str = String(generateBruteForce(String(str.dropLast()), fromArray: array)) + String(str.last!)
+        }
+    }
+    
+    return str
 }
